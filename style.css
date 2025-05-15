@@ -1,0 +1,205 @@
+/* style.css */
+
+/* ========== GENERAL STYLES ========== */
+
+body {
+  margin: 0; /* Remove default margin for edge-to-edge layout */
+  font-family: sans-serif; /* Use a clean, modern sans-serif font */
+  min-height: 100vh; /* Ensure body fills at least the viewport height */
+  display: flex; /* Enable flexbox for vertical stacking */
+  flex-direction: column; /* Stack children vertically (header, main, footer) */
+  background-color: #faedcd;
+}
+
+p {
+  color: darkred;
+}
+
+/* ========== HEADER STYLES ========== */
+
+header {
+  background-color: #333; /* Dark background for header */
+  color: white; /* White text in header */
+  padding: 1rem 20px; /* Space around header content */
+}
+
+h1 {
+  text-align: center;
+  color: darkred;
+}
+
+nav {
+  display: flex; /* Use flexbox for nav layout */
+  align-items: center; /* Vertically center nav items */
+  justify-content: flex-end; /* Align nav content to the right */
+  position: relative; /* Allow absolute positioning of dropdowns/menus */
+}
+
+nav a {
+  color: white; /* White nav link text */
+  text-decoration: none; /* Remove underline from nav links */
+}
+
+.menu-icon {
+  font-size: 2rem; /* Large hamburger icon */
+  cursor: pointer; /* Show pointer cursor on hover */
+  display: none; /* Hide menu icon on large screens */
+}
+
+.menu-toggle {
+  display: none; /* Hide the menu toggle checkbox */
+}
+
+.nav-links {
+  display: flex; /* Show nav links in a row */
+  align-items: center; /* Vertically center nav links */
+}
+
+.nav-links a {
+  margin-left: 80px; /* Space between nav links */
+}
+
+.nav-links a:hover {
+  color: #f0f0f0; /* Lighten nav link color on hover */
+}
+
+/* ========== MAIN STYLES ========== */
+
+main {
+  display: grid; /* Use grid layout for main content */
+  flex-grow: 1; /* Allow main to expand and fill available space */
+}
+
+.books-grid {
+  display: grid; /* Use grid for book cards */
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for books */
+  gap: 2rem; /* Space between book cards */
+  padding: 2rem 0; /* Vertical padding for grid */
+}
+
+.books-grid > div {
+  background: #fefae0; /* Light background for book cards */
+  border-radius: 8px; /* Rounded corners for book cards */
+  text-align: center; /* Center book card content */
+  padding: 1rem; /* Space inside book cards */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for cards */
+}
+
+.books-grid > div:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  transform: translateY(-8px) scale(1.03); /* Slight lift and scale */
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.books-grid img {
+  max-width: 100%; /* Responsive book images */
+  height: auto; /* Maintain image aspect ratio */
+  border-radius: 4px; /* Slightly rounded book images */
+}
+
+/* ========== FOOTER STYLES ========== */
+
+footer {
+  background-color: #f8f8f8; /* Light background for footer */
+  padding: 2rem 20px; /* Space around footer content */
+  text-align: center; /* Center footer text */
+}
+
+footer div a {
+  display: inline-block; /* Show social links inline */
+  margin: 0 15px; /* Space between social links */
+  color: #555; /* Gray color for social icons */
+  font-size: 1.5rem; /* Larger social icons */
+  text-decoration: none; /* Remove underline from social links */
+}
+
+footer div a:hover {
+  color: #333; /* Darken social icon on hover */
+}
+
+footer ul {
+  list-style: none; /* Remove bullets from footer nav */
+  padding: 0; /* Remove default padding */
+  margin-top: 1rem; /* Space above footer nav */
+}
+
+footer ul li {
+  display: inline; /* Show footer nav links inline */
+  margin: 0 15px; /* Space between footer nav links */
+}
+
+footer ul li a {
+  color: #777; /* Gray color for footer nav links */
+  text-decoration: none; /* Remove underline from footer nav links */
+}
+
+footer ul li a:hover {
+  color: #333; /* Darken footer nav link on hover */
+}
+
+footer p.copyright {
+  margin-top: 2rem; /* Space above copyright */
+  color: #777; /* Gray color for copyright */
+  font-size: 0.9rem; /* Smaller font size */
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+/* Responsive: stack columns on medium screens */
+@media (max-width: 900px) {
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for books */
+  }
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 600px) {
+  .books-grid {
+    grid-template-columns: 1fr; /* 1 column for books */
+  }
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .nav-links {
+    /* Hide nav links by default on small screens, but allow for sliding transition */
+    max-height: 0; /* Collapsed by default */
+    overflow: hidden; /* Hide content when collapsed */
+    flex-direction: column; /* Stack nav links vertically */
+    background-color: #333; /* Dark background for mobile nav */
+    position: absolute; /* Position nav links below nav bar */
+    top: 100%; /* Place below nav bar */
+    left: 0; /* Align to left edge */
+    width: 100%; /* Full width */
+    text-align: center; /* Center nav links */
+    z-index: 10; /* Ensure nav is above other content */
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide transition */
+  }
+
+  /* When menu is toggled (checkbox checked), expand nav-links */
+  .menu-toggle:checked + label + .nav-links {
+    max-height: 500px; /* Large enough for all links to show */
+  }
+
+  .nav-links a {
+    margin: 0; /* Remove left margin */
+    padding: 1rem 0; /* Add vertical padding */
+    width: 100%; /* Full width for each link */
+    display: block; /* Stack nav links vertically */
+  }
+
+  .menu-icon {
+    display: block; /* Show menu icon on small screens */
+  }
+
+  /* Hide the regular text links on smaller screens except the menu icon */
+  nav > a:not(.menu-icon) {
+    display: none;
+  }
+
+  nav {
+    justify-content: space-between; /* Space out nav content */
+  }
+}
